@@ -1,4 +1,3 @@
-import createHttpError from 'http-errors';
 import { SORT_ORDER } from '../constants/index.js';
 import { ContactsCollection } from '../db/models/contact.js';
 import { calculatePaginationData } from '../utils/calculatePaginationData.js';
@@ -41,10 +40,9 @@ export const getAllContacts = async ({
 };
 
 export const getContactById = async (contactId, userId) => {
-  const contact = await ContactsCollection.findById(contactId);
+  const contact = await ContactsCollection.findOne({ _id: contactId, userId });
 
-  if (contact.userId.toString() !== userId.toString())
-    throw createHttpError(403, 'You are not authorized to access this contact');
+  if (!contact) return null;
 
   return contact;
 };
