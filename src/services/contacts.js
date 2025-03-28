@@ -52,7 +52,7 @@ export const createContact = async (contactData, userId) => {
   return contact;
 };
 
-export const updateContact = async (id, contactData, userId) => {
+export const updateContact = async (id, userId, contactData) => {
   const contact = await ContactsCollection.findOneAndUpdate(
     { _id: id, userId },
     contactData,
