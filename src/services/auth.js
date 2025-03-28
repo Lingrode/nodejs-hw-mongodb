@@ -39,7 +39,7 @@ export const loginUser = async (payload) => {
 
   if (!user) throw createHttpError(404, 'User not found');
 
-  const isEqual = bcrypt.compare(payload.password, user.password);
+  const isEqual = await bcrypt.compare(payload.password, user.password);
 
   if (!isEqual) throw createHttpError(401, 'Unauthorized');
 
@@ -105,4 +105,32 @@ export const requestResetToken = async (email) => {
     subject: 'Reset your password!',
     html: `<p>Click <a href="${link}">here</a> to reset your password</p>`,
   });
+};
+
+export const resetPassword = async (payload) => {
+  let entries;
+
+  try {
+    entries = jwt.verify(payload.token, getEnvVar('JWT_SECRET'));
+  } catch (err) {
+    if (err instanceof Error)
+      throw createHttpError(401, 'Token is expired or invalid.');
+    throw err;
+  }
+
+  const user = await UserCollection.findOne({
+    email: entries.email,
+    _id: entries.sub,
+  });
+
+  if (!user) {
+    throw createHttpError(404, 'User not found');
+  }
+
+  const encryptedPassword = await bcrypt.hash(payload.password, 10);
+
+  await UserCollection.updateOne(
+    { _id: user._id },
+    { password: encryptedPassword },
+  );
 };
