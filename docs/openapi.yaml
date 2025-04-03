@@ -1,0 +1,25 @@
+openapi: 3.1.0
+info:
+  version: 1.0.0
+  title: Contact Book
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  description: Contact Book is a web application for managing personal and business contacts. Users can add, edit, delete, and search for contacts, as well as upload profile pictures. The app supports user authentication and secure data management using access tokens.
+tags:
+  - name: Auth
+    description: Endpoints for user authorization and authentication
+  - name: Contacts
+    description: Managing contacts (CRUD operations)
+  - name: Uploads
+    description: Endpoints for uploading contact images
+servers:
+  - url: http://localhost:3000
+  - url: https://hw2-mongodb-ewra.onrender.com
+paths:
+  # тут будуть посилання на ендпоінти
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
