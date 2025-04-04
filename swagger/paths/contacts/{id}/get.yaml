@@ -3,7 +3,11 @@ tags:
   - Contacts
 summary: Get contact by id
 operationId: getContact
-description: 'Get contact by id'
+description: >
+  Retrieves a specific contact by its unique ID. 
+  If the contact exists, it returns detailed information about it, 
+  including name, phone number, email, and other attributes. 
+  If the contact is not found, a 404 error is returned.
 security:
   - bearerAuth: []
 parameters:

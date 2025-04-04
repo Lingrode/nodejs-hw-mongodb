@@ -12,32 +12,42 @@ properties:
   _id:
     description: "Contact's id"
     type: string
+    format: uuid
     example: 65ca67e7ae7f10c88b598384
   name:
     description: "Contact's name"
     type: string
+    minLength: 3
+    maxLength: 20
     example: LeBron James
   phoneNumber:
     description: "Contact's phone number"
     type: string
+    minLength: 3
+    maxLength: 20
     example: '+17801231212'
   email:
     description: "Contact's email address"
     type: string
+    format: email
     example: 'example@example.com'
   isFavourite:
     description: 'Indicates whether the contact is a favorite'
     type: boolean
+    default: false
     example: false
   contactType:
     description: 'Type of contact: work, home or personal'
     type: string
     enum: ['work', 'home', 'personal']
+    default: personal
   userId:
     description: 'Indicates the user this contact belongs to'
     type: string
+    format: uuid
     example: 67e5fe84eb2ad9f264a2bca6
   photo:
     description: "Link to contact's photo"
     type: string
+    format: binary
     example: https://res.cloudinary.com/uqwgdu/image/upload/image.png
