@@ -1,13 +1,10 @@
-# swagger/paths/studens/{id}/get.yaml
 tags:
   - Contacts
 summary: Get list of contacts
 operationId: getContacts
 description: >
-  Retrieves a specific contact by its unique ID. 
-  If the contact exists, it returns detailed information about it, 
-  including name, phone number, email, and other attributes. 
-  If the contact is not found, a 404 error is returned.
+  Retrieves a paginated list of contacts that belong to the authenticated user.
+  Supports optional filtering by favorite status and contact type, as well as sorting and pagination.
 security:
   - bearerAuth: []
 parameters:
@@ -44,7 +41,7 @@ parameters:
     schema:
       type: string
       enum: ['work', 'home', 'personal']
-      example: male
+      example: work
 responses:
   '200':
     description: 'Get contact by id'
