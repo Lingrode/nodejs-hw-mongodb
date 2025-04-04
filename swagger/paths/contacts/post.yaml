@@ -1,0 +1,75 @@
+tags:
+  - Contacts
+summary: Create new contact
+operationId: createContact
+description: >
+  Creates a new contact for the authenticated user. 
+  Allows uploading contact details such as name, phone number, email, contact type, favorite status, and an optional photo.
+  Returns the created contact data upon success.
+security:
+  - bearerAuth: []
+requestBody:
+  required: true
+  content:
+    multipart/form-data:
+      schema:
+        type: object
+        required:
+          - name
+          - phoneNumber
+          - contactType
+        properties:
+          name:
+            description: Contact's name
+            type: string
+            minLength: 3
+            maxLength: 20
+            example: LeBron James
+          phoneNumber:
+            description: Contact's phone number
+            type: string
+            minLength: 3
+            maxLength: 20
+            example: '+17801231212'
+          email:
+            description: Contact's email address
+            type: string
+            format: email
+            example: example@example.com
+          isFavourite:
+            description: Indicates whether the contact is a favorite
+            type: boolean
+            default: false
+            example: false
+          contactType:
+            description: 'Type of contact: work, home or personal'
+            type: string
+            enum: ['work', 'home', 'personal']
+            default: personal
+          photo:
+            description: Optional photo file (will be uploaded to Cloudinary)
+            type: string
+            format: binary
+responses:
+  '201':
+    description: Contact created successfully
+    content:
+      application/json:
+        schema:
+          type: object
+          required:
+            - status
+            - message
+            - data
+          properties:
+            status:
+              type: integer
+              example: 201
+            message:
+              type: string
+              example: Successfully created a contact
+            data:
+              type: object
+              $ref: ../../components/schemas/contact.yaml
+  '401':
+    $ref: ../../components/responses/401.yaml

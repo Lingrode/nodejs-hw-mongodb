@@ -11,8 +11,6 @@ tags:
     description: Endpoints for user authorization and authentication
   - name: Contacts
     description: Managing contacts (CRUD operations)
-  - name: Uploads
-    description: Endpoints for uploading contact images
 servers:
   - url: http://localhost:3000
   - url: https://hw2-mongodb-ewra.onrender.com
@@ -20,12 +18,14 @@ paths:
   /contacts:
     get:
       $ref: '../swagger/paths/contacts/get.yaml'
+    post:
+      $ref: '../swagger/paths/contacts/post.yaml'
   /contacts/{id}:
     get:
       $ref: '../swagger/paths/contacts/{id}/get.yaml'
     patch:
       $ref: '../swagger/paths/contacts/{id}/patch.yaml'
-    delete: 
+    delete:
       $ref: '../swagger/paths/contacts/{id}/delete.yaml'
 components:
   securitySchemes:
