@@ -16,8 +16,11 @@ servers:
   - url: https://hw2-mongodb-ewra.onrender.com
 paths:
   /auth/register:
-    post: 
+    post:
       $ref: '../swagger/paths/auth/register/post.yaml'
+  /auth/login:
+    post:
+      $ref: '../swagger/paths/auth/login/post.yaml'
   /contacts:
     get:
       $ref: '../swagger/paths/contacts/get.yaml'
