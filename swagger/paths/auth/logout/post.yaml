@@ -1,0 +1,28 @@
+tags:
+  - Auth
+summary: Log out user
+operationId: logoutUser
+description: |
+  Logs out the user by invalidating the session or token.
+  The user will be logged out of the system.
+security:
+  - bearerAuth: []
+responses:
+  '204':
+    description: Success - no content.
+  '401':
+    description: Unauthorized. The user is not authorized to log out.
+    content:
+      application/json:
+        schema:
+          type: object
+          required:
+            - status
+            - message
+          properties:
+            status:
+              type: integer
+              example: 401
+            message:
+              type: string
+              example: 'Unauthorized: Invalid session or session expired'
