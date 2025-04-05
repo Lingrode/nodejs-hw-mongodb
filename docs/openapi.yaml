@@ -22,8 +22,11 @@ paths:
     post:
       $ref: '../swagger/paths/auth/login/post.yaml'
   /auth/logout:
-    post: 
+    post:
       $ref: '../swagger/paths/auth/logout/post.yaml'
+  /auth/send-reset-email:
+    post:
+      $ref: '../swagger/paths/auth/send-reset-email/post.yaml'
   /contacts:
     get:
       $ref: '../swagger/paths/contacts/get.yaml'

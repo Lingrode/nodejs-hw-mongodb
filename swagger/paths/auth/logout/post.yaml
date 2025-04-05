@@ -11,7 +11,7 @@ responses:
   '204':
     description: Success - no content.
   '401':
-    description: Unauthorized. The user is not authorized to log out.
+    description: Unauthorized
     content:
       application/json:
         schema:

@@ -1,5 +1,3 @@
-# swagger/components/responses/401.yaml
-
 description: Not found error
 content:
   application/json:
