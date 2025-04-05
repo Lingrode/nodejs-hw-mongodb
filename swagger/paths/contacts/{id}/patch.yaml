@@ -50,8 +50,8 @@ requestBody:
             enum: ['work', 'home', 'personal']
           photo:
             type: string
-            description: URL of the contact's photo
-            format: uri
+            description: Optional photo file (will be uploaded to Cloudinary)
+            format: binary
             example: https://res.cloudinary.com/uqwgdu/image/upload/image.png
 responses:
   '200':
