@@ -15,6 +15,9 @@ servers:
   - url: http://localhost:3000
   - url: https://hw2-mongodb-ewra.onrender.com
 paths:
+  /auth/register:
+    post: 
+      $ref: '../swagger/paths/auth/register/post.yaml'
   /contacts:
     get:
       $ref: '../swagger/paths/contacts/get.yaml'
